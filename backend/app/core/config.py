@@ -1,7 +1,7 @@
 import secrets
 from typing import Optional
 from pydantic_settings import BaseSettings
-from pydantic import AnyHttpUrl, field_validator, EmailStr, HttpUrl, MysqlDsn
+from pydantic import AnyHttpUrl, field_validator, EmailStr, HttpUrl, MySQLDsn
 
 
 class Settings(BaseSettings):
@@ -27,4 +27,7 @@ class Settings(BaseSettings):
     MYSQL_USER: str
     MYSQL_PASSWORD: str
     MYSQL_DB: str
-    SQLALCHEMY_DATABASE_URI: Optional[MysqlDsn] = None
+    SQLALCHEMY_DATABASE_URI: Optional[MySQLDsn] = None
+
+
+settings = Settings()
