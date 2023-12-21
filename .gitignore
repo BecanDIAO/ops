@@ -2,3 +2,4 @@ ops
 .idea
 venv
 backend/.env
+.env
