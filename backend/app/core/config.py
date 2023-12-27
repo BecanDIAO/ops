@@ -1,6 +1,5 @@
 import secrets
-from typing import Optional
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import AnyHttpUrl, field_validator, EmailStr, HttpUrl, MySQLDsn
 
 
@@ -24,10 +23,12 @@ class Settings(BaseSettings):
 
     MYSQL_HOST: str = "localhost"
     MYSQL_PORT: int = 3306
-    MYSQL_USER: str
-    MYSQL_PASSWORD: str
-    MYSQL_DB: str
-    SQLALCHEMY_DATABASE_URI: Optional[MySQLDsn] = None
+    MYSQL_USER: str = None
+    MYSQL_PASSWORD: str = None
+    MYSQL_DB: str = None
+    SQLALCHEMY_DATABASE_URI: str = f"mysql+pymysql://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DB}"
+
+    model_config = SettingsConfigDict(env_file='.env', env_file_encoding='utf-8')
 
 
 settings = Settings()

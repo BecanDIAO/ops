@@ -3,3 +3,4 @@ ops
 venv
 backend/.env
 .env
+.vscode
