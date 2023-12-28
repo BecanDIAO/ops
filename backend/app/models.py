@@ -11,6 +11,6 @@ class User(Base):
     email = Column(String(20), unique=True, index=True)
     hashed_password = Column(String(50))
     is_active = Column(Boolean, default=True)
-    registered_on = Column(DateTime, default=datetime.utcnow)
-    last_login = Column(DateTime)
+    registered_on = Column(DateTime, default=datetime.now)
+    last_login = Column(DateTime, nullable=True)
     is_superuser = Column(Boolean, default=False)

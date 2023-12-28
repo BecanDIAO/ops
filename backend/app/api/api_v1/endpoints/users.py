@@ -9,7 +9,7 @@ from app import schemas, crud
 router = APIRouter()
 
 
-@router.get("/")
+@router.get("/", response_model=list[schemas.User])
 def read_users(db: Annotated[Session, Depends(get_db)], skip: int = 0, limit: int = 10) -> list[schemas.User]:
     users = crud.get_users(db, skip, limit)
     return users

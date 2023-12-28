@@ -1,5 +1,5 @@
 from datetime import datetime
-from pydantic import BaseModel, EmailStr, ConfigDict
+from pydantic import BaseModel, EmailStr, ConfigDict, AwareDatetime
 
 
 class UserBase(BaseModel):
@@ -17,5 +17,5 @@ class User(UserBase):
     model_config = ConfigDict(from_attributes=True)
 
     id: int
-    registered_on: datetime
-    last_login: datetime = None
+    registered_on: datetime = None
+    last_login: datetime | None
