@@ -9,10 +9,11 @@ from app import schemas, crud
 router = APIRouter()
 
 
-@router.get("/", response_model=list[schemas.User])
-def read_users(db: Annotated[Session, Depends(get_db)], skip: int = 0, limit: int = 10) -> list[schemas.User]:
+@router.get("/", response_model=schemas.UserOut)
+def read_users(db: Annotated[Session, Depends(get_db)], skip: int = 0, limit: int = 10):
     users = crud.get_users(db, skip, limit)
-    return users
+    result = schemas.UserOut(users=users, total=len(users), skip=skip, limit=limit, page=skip+1)
+    return result
 
 
 @router.post("/", response_model=schemas.User)

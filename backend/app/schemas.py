@@ -1,5 +1,12 @@
 from datetime import datetime
-from pydantic import BaseModel, EmailStr, ConfigDict, AwareDatetime
+from pydantic import BaseModel, EmailStr, ConfigDict
+
+
+class Page(BaseModel):
+    page: int
+    total: int
+    skip: int
+    limit: int
 
 
 class UserBase(BaseModel):
@@ -19,3 +26,7 @@ class User(UserBase):
     id: int
     registered_on: datetime = None
     last_login: datetime | None
+
+
+class UserOut(Page):
+    users: list[User] = []
